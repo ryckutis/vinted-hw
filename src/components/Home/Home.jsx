@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { createClient } from 'pexels';
-import { GalleryContainer, Image } from './Home.styled';
+import {
+  GalleryContainer,
+  Image,
+  ImageContainer,
+  ImageContent,
+} from './Home.styled';
 
 export default function Home() {
   const [images, setImages] = useState([]);
@@ -22,7 +27,13 @@ export default function Home() {
   return (
     <GalleryContainer>
       {images.map((image) => (
-        <Image key={image.id} src={image.src.medium} alt={image.photographer} />
+        <ImageContainer>
+          <Image key={image.id} src={image.src.medium} alt={image.alt} />
+          <ImageContent>
+            <h3>{image.alt}</h3>
+            <p>{image.photographer}</p>
+          </ImageContent>
+        </ImageContainer>
       ))}
     </GalleryContainer>
   );
