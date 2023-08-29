@@ -27,11 +27,12 @@ export default function Home() {
   return (
     <GalleryContainer>
       {images.map((image) => (
-        <ImageContainer>
-          <Image key={image.id} src={image.src.medium} alt={image.alt} />
+        <ImageContainer key={image.id}>
+          <Image src={image.src.medium} alt={image.alt} />
           <ImageContent>
             <h3>{image.alt}</h3>
-            <p>{image.photographer}</p>
+            <hr />
+            <i>{image.photographer}</i>
           </ImageContent>
         </ImageContainer>
       ))}

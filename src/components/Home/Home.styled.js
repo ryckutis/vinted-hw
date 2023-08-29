@@ -15,6 +15,7 @@ export const GalleryContainer = styled.div`
 
 export const ImageContainer = styled.div`
   position: relative;
+  text-align: center;
 `;
 
 export const Image = styled.img`
@@ -25,11 +26,6 @@ export const Image = styled.img`
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   transition: transform 0.2s ease-in-out;
-
-  :hover {
-    transform: scale(1.05);
-    cursor: pointer;
-  }
 
   @media (max-width: 768px) {
     width: 250px;
@@ -44,16 +40,24 @@ export const ImageContent = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.4);
   color: black;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 
   :hover {
     opacity: 1;
+    cursor: pointer;
+  }
+
+  h3,
+  i {
+    background: none;
+    color: whitesmoke;
+  }
+
+  hr {
+    width: 5em;
   }
 `;
