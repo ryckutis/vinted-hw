@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from 'pexels';
 import {
   GalleryContainer,
   Image,
@@ -12,12 +11,15 @@ export default function Home() {
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_PEXELS_API;
-    const client = createClient(apiKey);
 
-    client.photos
-      .curated({ per_page: 20 })
-      .then((photosResponse) => {
-        setImages(photosResponse.photos);
+    fetch(`https://api.pexels.com/v1/curated?per_page=15`, {
+      headers: {
+        Authorization: apiKey,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setImages(data.photos);
       })
       .catch((error) => {
         console.error('Error fetching images:', error);

@@ -39,10 +39,13 @@ export const ImageContent = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 8px;
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.4);
-  color: black;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 
@@ -55,6 +58,7 @@ export const ImageContent = styled.div`
   i {
     background: none;
     color: whitesmoke;
+    margin: 0;
   }
 
   hr {
