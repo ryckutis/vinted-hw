@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
-import { SearchContainer, SearchInput, SearchButton } from './SearchBar.styled';
+import {
+  SearchContainer,
+  SearchInput,
+  SearchButton,
+  ErrorMessage,
+} from './SearchBar.styled';
 
 export default function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSearch = async () => {
+    if (searchTerm.trim() === '') {
+      setErrorMessage(true);
+      setTimeout(() => {
+        setErrorMessage(false);
+      }, 2000);
+      return;
+    }
+
     try {
       const apiKey = process.env.REACT_APP_PEXELS_API;
       const response = await fetch(
@@ -18,6 +32,7 @@ export default function SearchBar({ onSearch }) {
       const data = await response.json();
       onSearch(data.photos);
       setSearchTerm('');
+      setErrorMessage('');
     } catch (error) {
       console.error('Error searching images:', error);
     }
@@ -39,6 +54,7 @@ export default function SearchBar({ onSearch }) {
         onKeyDown={handleKeyPress}
       />
       <SearchButton onClick={handleSearch}>Search</SearchButton>
+      <ErrorMessage show={errorMessage}>Write something!</ErrorMessage>
     </SearchContainer>
   );
 }

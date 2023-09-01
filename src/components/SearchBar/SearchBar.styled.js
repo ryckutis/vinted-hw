@@ -49,3 +49,9 @@ export const SearchButton = styled.button`
     background-color: #0a856f;
   }
 `;
+
+export const ErrorMessage = styled.p`
+  color: red;
+  opacity: ${(props) => (props.show ? 1 : 0)};
+  transition: opacity 0.3s ease-in-out;
+`;
