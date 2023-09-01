@@ -4,7 +4,7 @@ export const GalleryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 2em;
-  padding: 5em 10em;
+  padding: 3em 10em;
   align-items: center;
   justify-content: center;
 

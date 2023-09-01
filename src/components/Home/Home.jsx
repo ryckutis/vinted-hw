@@ -5,6 +5,7 @@ import {
   ImageContainer,
   ImageContent,
 } from './Home.styled';
+import SearchBar from '../SearchBar/SearchBar';
 
 export default function Home() {
   const [images, setImages] = useState([]);
@@ -26,18 +27,25 @@ export default function Home() {
       });
   }, []);
 
+  const handleSearch = (searchResults) => {
+    setImages(searchResults);
+  };
+
   return (
-    <GalleryContainer>
-      {images.map((image) => (
-        <ImageContainer key={image.id}>
-          <Image src={image.src.medium} alt={image.alt} />
-          <ImageContent>
-            <h3>{image.alt}</h3>
-            <hr />
-            <i>{image.photographer}</i>
-          </ImageContent>
-        </ImageContainer>
-      ))}
-    </GalleryContainer>
+    <>
+      <SearchBar onSearch={handleSearch} />
+      <GalleryContainer>
+        {images.map((image) => (
+          <ImageContainer key={image.id}>
+            <Image src={image.src.medium} alt={image.alt} />
+            <ImageContent>
+              <h3>{image.alt}</h3>
+              <hr />
+              <i>{image.photographer}</i>
+            </ImageContent>
+          </ImageContainer>
+        ))}
+      </GalleryContainer>
+    </>
   );
 }

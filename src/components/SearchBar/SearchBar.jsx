@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-import { createClient } from 'pexels';
 import { SearchContainer, SearchInput, SearchButton } from './SearchBar.styled';
-
-const client = createClient(
-  'z9CYim5XI65TafW1bw2NCjDbcdvTstG2ssBCmB04uqE1xTvdR0KUy7SZ'
-);
 
 export default function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = async () => {
     try {
-      const response = await client.photos.search({
-        query: searchTerm,
-        per_page: 15,
-      });
-      onSearch(response.photos);
+      const apiKey = process.env.REACT_APP_PEXELS_API;
+      const response = await fetch(
+        `https://api.pexels.com/v1/search?query=${searchTerm}&per_page=15`,
+        {
+          headers: {
+            Authorization: apiKey,
+          },
+        }
+      );
+      const data = await response.json();
+      onSearch(data.photos);
       setSearchTerm('');
     } catch (error) {
       console.error('Error searching images:', error);
