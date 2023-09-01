@@ -9,26 +9,58 @@ import SearchBar from '../SearchBar/SearchBar';
 
 export default function Home() {
   const [images, setImages] = useState([]);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_PEXELS_API;
 
-    fetch(`https://api.pexels.com/v1/curated?per_page=15`, {
-      headers: {
-        Authorization: apiKey,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setImages(data.photos);
-      })
-      .catch((error) => {
+    const fetchImages = async () => {
+      setLoading(true);
+
+      try {
+        const response = await fetch(
+          `https://api.pexels.com/v1/curated?per_page=15&page=${page}`,
+          {
+            headers: {
+              Authorization: apiKey,
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.photos.length > 0) {
+          setImages((prevImages) => [...prevImages, ...data.photos]);
+          setPage(page + 1);
+        }
+      } catch (error) {
         console.error('Error fetching images:', error);
-      });
-  }, []);
+      }
+
+      setLoading(false);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+
+    function handleScroll() {
+      if (
+        window.innerHeight + document.documentElement.scrollTop ===
+          document.documentElement.offsetHeight &&
+        !loading
+      ) {
+        fetchImages();
+      }
+    }
+  }, [page, loading]);
 
   const handleSearch = (searchResults) => {
     setImages(searchResults);
+    setPage(1);
   };
 
   return (
