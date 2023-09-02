@@ -33,7 +33,7 @@ export const ProgressBarColor = styled.div`
   width: 0;
   height: 100%;
   border-radius: 15px;
-  animation: ${fillAnimation} 4s infinite linear;
+  animation: ${fillAnimation} 1s infinite linear;
 `;
 
 export const LogoContainer = styled.div`
