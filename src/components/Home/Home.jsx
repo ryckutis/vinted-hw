@@ -11,6 +11,7 @@ export default function Home() {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [initialFetchComplete, setInitialFetchComplete] = useState(false);
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_PEXELS_API;
@@ -41,6 +42,11 @@ export default function Home() {
       setLoading(false);
     };
 
+    if (!initialFetchComplete && page === 1) {
+      fetchImages();
+      setInitialFetchComplete(true);
+    }
+
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -56,7 +62,7 @@ export default function Home() {
         fetchImages();
       }
     }
-  }, [page, loading]);
+  }, [page, loading, initialFetchComplete]);
 
   const handleSearch = (searchResults) => {
     setImages(searchResults);
