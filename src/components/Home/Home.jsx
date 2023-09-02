@@ -6,14 +6,28 @@ import {
   ImageContent,
 } from './Home.styled';
 import SearchBar from '../SearchBar/SearchBar';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import NavBar from '../NavBar/NavBar';
 
 export default function Home() {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [initialFetchComplete, setInitialFetchComplete] = useState(false);
+  const [likedImages, setLikedImages] = useState(() => {
+    const storedLikedImages = JSON.parse(
+      localStorage.getItem('likedImages') || '[]'
+    );
+    return storedLikedImages;
+  });
 
   useEffect(() => {
+    const storedLikedImages = JSON.parse(
+      localStorage.getItem('likedImages') || '[]'
+    );
+
+    setLikedImages(storedLikedImages);
+
     const apiKey = process.env.REACT_APP_PEXELS_API;
 
     const fetchImages = async () => {
@@ -69,9 +83,24 @@ export default function Home() {
     setPage(1);
   };
 
+  const handleLike = (imageId) => {
+    setLikedImages((prevLikedImages) => {
+      if (prevLikedImages.includes(imageId)) {
+        return prevLikedImages.filter((id) => id !== imageId);
+      } else {
+        return [...prevLikedImages, imageId];
+      }
+    });
+  };
+
+  useEffect(() => {
+    localStorage.setItem('likedImages', JSON.stringify(likedImages));
+  }, [likedImages]);
+
   return (
     <>
       <SearchBar onSearch={handleSearch} />
+      <NavBar />
       <GalleryContainer>
         {images.map((image) => (
           <ImageContainer key={image.id}>
@@ -80,6 +109,13 @@ export default function Home() {
               <h3>{image.alt}</h3>
               <hr />
               <i>{image.photographer}</i>
+              <button onClick={() => handleLike(image.id)}>
+                {likedImages.includes(image.id) ? (
+                  <AiFillHeart />
+                ) : (
+                  <AiOutlineHeart />
+                )}
+              </button>
             </ImageContent>
           </ImageContainer>
         ))}

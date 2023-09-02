@@ -63,7 +63,6 @@ export const ImageContent = styled.div`
 
   :hover {
     opacity: 1;
-    cursor: pointer;
   }
 
   h3,
@@ -75,5 +74,27 @@ export const ImageContent = styled.div`
 
   hr {
     width: 5em;
+  }
+
+  button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-size: 32px;
+    padding: 0;
+    margin: 0;
+
+    svg {
+      background-color: transparent;
+      border-radius: 5px;
+    }
+
+    :hover {
+      color: #e9452b;
+    }
   }
 `;
