@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 3000);
   }, []);
 
   return <div>{isLoading ? <PageLoader /> : <Home />}</div>;
