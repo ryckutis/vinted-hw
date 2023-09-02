@@ -99,8 +99,9 @@ export default function Home() {
 
   return (
     <>
-      <SearchBar onSearch={handleSearch} />
       <NavBar />
+      <SearchBar onSearch={handleSearch} />
+
       <GalleryContainer>
         {images.map((image) => (
           <ImageContainer key={image.id}>

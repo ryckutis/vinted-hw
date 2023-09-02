@@ -1,11 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { StyledNav } from './NavBar.styled';
 
 export default function NavBar() {
+  const location = useLocation();
+
   return (
-    <nav>
-      <Link to="/">Gallery </Link>
-      <Link to="/favorites">Favorite images </Link>
-    </nav>
+    <StyledNav>
+      <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
+        Gallery
+      </Link>
+      <Link
+        to="/favorites"
+        className={location.pathname === '/favorites' ? 'active' : ''}
+      >
+        Favorites collection
+      </Link>
+    </StyledNav>
   );
 }
