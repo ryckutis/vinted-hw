@@ -12,6 +12,7 @@ const appearAnimation = keyframes`
 `;
 
 export const StyledNav = styled.nav`
+  width: 100%;
   background-color: #0da385;
   padding: 1em;
   text-align: center;
@@ -25,6 +26,11 @@ export const StyledNav = styled.nav`
     margin: 0 1em;
     font-size: 18px;
     padding: 10px 20px;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+      margin: 0 0.5em;
+    }
 
     &:hover {
       outline: 2px solid white;
