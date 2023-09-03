@@ -32,9 +32,8 @@ export const StyledNav = styled.nav`
       margin: 0 0.5em;
     }
 
-    &:hover {
-      outline: 2px solid white;
-      border-radius: 15px;
+    :hover {
+      color: yellow;
     }
 
     &.active {
