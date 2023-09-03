@@ -45,16 +45,18 @@ export default function SearchBar({ onSearch }) {
   };
 
   return (
-    <SearchContainer>
-      <SearchInput
-        type="text"
-        placeholder="Search for images..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyDown={handleKeyPress}
-      />
-      <SearchButton onClick={handleSearch}>Search</SearchButton>
+    <>
+      <SearchContainer>
+        <SearchInput
+          type="text"
+          placeholder="Search for images..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyPress}
+        />
+        <SearchButton onClick={handleSearch}>Search</SearchButton>
+      </SearchContainer>
       <ErrorMessage show={errorMessage}>Write something!</ErrorMessage>
-    </SearchContainer>
+    </>
   );
 }

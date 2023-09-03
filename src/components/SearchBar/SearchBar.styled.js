@@ -15,7 +15,7 @@ export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1.5em auto;
+  margin-top: 1.5em;
   animation: ${appearAnimation} 0.7s ease-in-out;
 `;
 
@@ -52,6 +52,8 @@ export const SearchButton = styled.button`
 
 export const ErrorMessage = styled.p`
   color: red;
+  text-align: center;
+  margin-top: 0.5em;
   opacity: ${(props) => (props.show ? 1 : 0)};
   transition: opacity 0.3s ease-in-out;
 `;
