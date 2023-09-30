@@ -4,3 +4,9 @@
   background-color: whitesmoke;
   font-family: 'Montserrat', sans-serif;
 }
+
+@media (max-width: 768px) {
+  * {
+    box-sizing: border-box;
+  }
+}
