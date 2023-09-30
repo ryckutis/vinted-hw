@@ -26,6 +26,7 @@ export const StyledNav = styled.nav`
     margin: 0 1em;
     font-size: 18px;
     padding: 10px 20px;
+    transition: 1s;
 
     @media (max-width: 768px) {
       font-size: 16px;
