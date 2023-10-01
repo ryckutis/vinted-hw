@@ -68,10 +68,7 @@ export default function Home() {
     };
 
     function handleScroll() {
-      const windowHeight =
-        'innerHeight' in window
-          ? window.innerHeight
-          : document.documentElement.offsetHeight;
+      const windowHeight = window.innerHeight;
       const body = document.body;
       const html = document.documentElement;
       const docHeight = Math.max(
@@ -81,9 +78,9 @@ export default function Home() {
         html.scrollHeight,
         html.offsetHeight
       );
-      const windowBottom = windowHeight + window.pageYOffset;
+      const windowBottom = windowHeight + window.scrollY;
 
-      if (windowBottom >= docHeight && !loading) {
+      if (windowBottom >= docHeight - 1 && !loading) {
         fetchImages();
       }
     }
