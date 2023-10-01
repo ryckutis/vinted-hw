@@ -23,8 +23,8 @@ export const StyledNav = styled.nav`
     color: white;
     font-weight: bold;
     text-decoration: none;
-    margin: 0 1em;
-    font-size: 18px;
+    margin: 0 2em;
+    font-size: 24px;
     padding: 10px 20px;
     transition: 1s;
 
@@ -39,6 +39,7 @@ export const StyledNav = styled.nav`
 
     &.active {
       color: yellow;
+      border-bottom: 3px solid yellow;
     }
   }
 `;

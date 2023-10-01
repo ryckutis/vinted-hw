@@ -14,7 +14,7 @@ export default function NavBar() {
         to="/favorites"
         className={location.pathname === '/favorites' ? 'active' : ''}
       >
-        Favorites collection
+        Favorites
       </Link>
     </StyledNav>
   );
